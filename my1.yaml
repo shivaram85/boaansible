@@ -1,0 +1,18 @@
+--- # my first playbook
+ - hosts: node2
+   become: ansible2
+   vars:
+     web_name: httpd
+     remote_access: telnet
+     one_more: mariadb
+   tasks:
+   - block: Installing Apache on Nodes
+     yum:
+       name: "{{ web_name }}"
+       state: latest
+     rescue: Installing Telnet
+       name: "{{ remote_access }}"
+       state: latest
+     always: Installing always
+       name: "{{ one_more }}"
+       state: latest

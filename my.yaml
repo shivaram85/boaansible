@@ -1,0 +1,19 @@
+--- # my first playbook
+ - hosts: node2
+#   remote_user: ansible2
+#   become: yes
+#   remote_user: ansible2
+   become: ansible2
+   tasks:
+   - name: installing Apache on Nodes
+     yum:
+       name: httpd
+       state: latest
+   - name: Restarting the Apache service
+     service:
+       name: httpd
+       state: restarted
+   - name: Creating a file index.html
+     file:
+       state: touch
+       dest: /var/www/html/index.html
